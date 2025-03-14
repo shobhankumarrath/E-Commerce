@@ -132,6 +132,9 @@ const sidebar = () => {
               </button>
             ))}
           </div>
+          {keyword && (
+            <p className="mt-2 text-sm text-gray-600">Selected: {keyword}</p>
+          )}
         </div>
 
         <button
