@@ -61,7 +61,7 @@ const mainContent = () => {
   };
   const filteredProducts = getFilteredProducts();
   const totalPages = Math.ceil(100 / itemsPerPage);
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: any) => {
     if (page > 0 && page <= totalPages) setCurrentPage(page);
   };
 
