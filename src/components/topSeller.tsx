@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 
 interface Author {
   name: string;
-  isFollowing: Boolean;
+  isFollowing: boolean;
   image: string;
 }
-const topSeller = () => {
+
+const TopSeller = () => {
   const [authors, setAuthors] = useState<Author[]>([]);
 
   useEffect(() => {
@@ -30,29 +31,33 @@ const topSeller = () => {
   }, []);
 
   const handleFollowClick = (index: number) => {
-    setAuthors((prevAuthor) =>
-      prevAuthor.map((author, i) =>
+    setAuthors((prevAuthors) =>
+      prevAuthors.map((author, i) =>
         i === index ? { ...author, isFollowing: !author.isFollowing } : author
       )
     );
   };
+
   return (
-    <div className="bg-white p-5 mx-5 mt-[5rem] border w-[22rem] rounded">
-      <h2 className="text-xl font-bold mb-5"> Top Seller</h2>
+    <div className="bg-white p-5 mx-5 mt-10 border w-full max-w-md rounded-lg shadow-md">
+      <h2 className="text-xl font-bold mb-5 text-center">Top Sellers</h2>
       <ul>
         {authors.map((author, index) => (
-          <li key={index} className="flex items-center justify-between mb-4">
-            <section className="flex justify-center items-center">
+          <li
+            key={index}
+            className="flex items-center justify-between mb-4 space-x-4"
+          >
+            <section className="flex items-center space-x-3">
               <img
                 src={author.image}
                 alt={author.name}
-                className="w-[25%] h-[25%] justify-center rounded-full"
+                className="w-12 h-12 rounded-full object-cover"
               />
-              <span className="ml-4">{author.name}</span>
+              <span className="text-sm font-medium">{author.name}</span>
             </section>
             <button
               onClick={() => handleFollowClick(index)}
-              className={`py-1 px-3 rounded ${
+              className={`py-2 px-4 text-sm font-medium rounded-md transition ${
                 author.isFollowing
                   ? "bg-red-500 text-white"
                   : "bg-black text-white"
@@ -67,4 +72,4 @@ const topSeller = () => {
   );
 };
 
-export default topSeller;
+export default TopSeller;
